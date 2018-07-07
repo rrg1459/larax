@@ -1,0 +1,70 @@
+***
+***
+php artisan make:controller ‘NombreControlador’ --resource
+Crea los metodos para hacer un crud:
+index
+create
+store
+show
+update
+destroy
+
+***
+***
+Para mandar a llamar un metodo desde el enrutador se escribe
+nameController@method
+como string despues de la ruta.
+
+***
+***
+Tambien puedes ver especificamente los hijos de un comando escribiendo solo el primer parametro. Por ejemplo.
+
+php artisan make
+y eso te devuelve unicamente los comandos de make:xxxxx
+
+***
+***
+Tambien podemos enviar variables a través de las rutas:
+
+Route::get('/estatica/{$dinamica}')
+
+***
+***
+Para revisar a las rutas un comando importante es
+
+php artisan route:list 
+ó directamente
+
+php artisan r:l
+
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Agrega un Controlador para Separar la Lógica de la Aplicación
+los controllers son clases y objetos que vamos a usar para modelar los problemas a resolver, puntualmente resolver el problema de recibir iun pedido de la red y dar una respuesta.
+
+En este video vamos a mejorar nuestra aplicación llevándonos el código que hicimos en el archivo de rutas hacia los controllers.
+
+Esto lo haremos utilizando artisan primero recuerden tener activo su servidor
+y en otro servidor vamos a ejecurar el comando:
+…
+php artisan make:controller --help
+…
+y aquí le pediremos ayuda para saber que argumentos requiere.
+
+Ahora procederemos a crear nuestro controller utilizando php artisan make:controller PagesController y será creado exitosamente, por último procederemos a mover las direcciones a nuestro controlador.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan
+php artisan make:controller --help
+php artisan make:controller PagesController
+C:\xampp\htdocs\larax\app\Http\Controllers\PagesController.php
