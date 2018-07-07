@@ -1,0 +1,53 @@
+***
+***
+Tambien esta disponible la directiva @include y esta se diferencia de @extends porque @include puede ser requerida para en algun momento y no siempre a diferencia de extends que siempre sera invocado.
+Ejemplo
+
+<div>
+    @include('layouts.notifications')
+
+    <form>
+        {{-- Form Contents --}}
+    </form>
+</div>
+A proposito, un comentario en blade es asi
+
+{{-- Esto es un comentario --}}
+
++++
++++
+¿Cual es la diferencia entre @endsection y @stop, para finalizar una sección?
+
+razpeitia_
+razpeitia_
+un año
+endsection esta deprecado
+stop lo reemplaza
+
+Fuente: 
+http://stackoverflow.com/questions/21199412/laravel-blade-endsection-vs-stop
+
+
++++
++++
+@endsection fue deprecado en el paso de L3 a L4, pero al parecer decidieron traerlo de su exilio y ahora es utilizado de nuevo, como se menciona en otro comentario incluso es utilizado en los ejemplos de la documentación de la v5.5
+
++++
++++
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Crea Layouts en Blade para Evitar la Duplicación de Código
+Ahora vamos a aparender a crear Layouts para poder crear pagínas nuevas fácilmente, reutilizando código que nuestras páginas tendrán en común usaremos 3 comandos principales Layout files @extends @yield @section.
+
+@yield significa ceder, cede una parte del archivo a una sección diferente, en el ejemplo se utiliza para ceder la parte del contenido de nuestro HTML.
+para rellenar la parte cedida de nuestro layout seleccionamos el contenido de un archivo y utilizamos el comando @section que nos permitirá vincular nuestros archivos esto lo hacemos definiendo @section(‘content’) y por último el comando @extend nos sirve para indicar que archivo o archivos extentemos entonces utilizamos @extends(‘layouts.app’) para poder extender nuestras páginas es decir indicamos que esa parte del código será reutilizada.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***

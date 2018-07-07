@@ -8,7 +8,7 @@ Proyecto con Laravel 07:53:00
 XX03	4	Inicia el Proyecto de Laravel
 XX04	5	Agrega Rutas en el Controller y Templates de Blade
 XX05	9	Repeticiones y Condicionales en Templates de Blade
-06	8	Agrega un Controlador para Separar la Lógica de la Aplicación
+XX06	8	Agrega un Controlador para Separar la Lógica de la Aplicación
 07	9	Crea Layouts en Blade para Evitar la Duplicación de Código
 08	15	Agregar Bootstrap a Nuestro Proyecto
 09	16	Corriendo Migraciones en Nuestra Base de Datos
