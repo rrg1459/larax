@@ -1,0 +1,54 @@
+***
+***
+Que es un Template?
+
+Un template es un archivo base de lo que vez en tu sitio web y que carga datos de manera dinámica, por ejemplo si entras a otro material de este mismo curso ves que la interfaz es igual pero los datos como el de la descripción del material, el video y otros datos son diferentes, esto usa el mismo template pero los datos cargan de manera dinámica.
+
+***
+***
+Una manera de imprimir el valor que guarda una variable en php es:
+
+<?=  $variable  ?>
+
+***
+***
+En vez de usar
+
+@if(isset($var))
+@endif
+también podemos usar
+
+@isset($var)
+@endisset
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Repeticiones y Condicionales en Templates de Blade
+Ahora veremos instrucciones para crear controllers y además instrucciones de flujo con BLADE cambiando los enlaces y la forma en la que los estamos generando.
+
+La sintáxis {{ var }} equivale al comando echo de PHP.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Cada vez que queremos usar variables en un template, las tenemos que enviar desde llamamos al template.
+
+***
+***
+mi codigo oara esta clase
+                @if (isset($teacher))
+                    <p>Professor: {{ $teacher }}</p>
+                @else
+                    <p>*** Profesor a definir ***</p>
+                @endisset
+
+                <div class="links">
+                    @foreach ($links as $link => $text)
+                    <a href="{{ $link }}">{{ $text }}</a>
+                    @endforeach
+                </div>
