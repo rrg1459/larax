@@ -1,0 +1,103 @@
+Introducción 00:08:00 (D1)
+
+XX01	1		Presentación, contenidos y proyecto
+XX02	1		Características de PHP
+XX03	6		Antes de comenzar y Sintáxis
+
+Introducción a PHP 00:15:00 (D1)
+
+XX04	6		Manejo de Variables y Tipos de Datos en PHP
+XX05	4		Utilización de Cadenas de Caractéres en PHP
+XX06	5		Arreglos
+
+Operadores 00:30:00 (D1)
+
+XX07	3		Operadores - Aritméticos
+XX08	3		Asignación
+XX09	7		Comparación
+XX10	5		Arrays
+XX11	4		Incremento
+XX12	6		Lógicos
+XX13	2		Null
+
+Funciones 01:01:00 (D1)
+
+XX14	9		Funciones en PHP
+XX15	8		Estructuras Condicionales
+XX16	9		Estructuras de Ciclos
+YY17	8		Cargas de Archivos Externos
+
+repetir desde aqui
+------------------
+
+YY18	10	Manejo de Sesiones
+YY19	8		Manejo de Cookies
+YY20	9		Funciones Anónimas
+
+Programación Orientada a Objetos 01:12:00 (D2)
+
+YY21	12	Introducción a Programación Orientada a Objetos
+YY22	4		Constructor y Destructor
+YY23	11	Herencia
+YY24	9		Namespaces
+YY25	6		Static
+YY26	7		Abstract y Polimorfismo
+YY27	9		Interface
+YY28	9		Excepciones
+YY29	5		Traits
+
+PDO y SQL 01:25:00 (D1-D2)
+
+XX30	5		Introducción a bases de datos SQL con PHP
+XX31	13	Conexión desde PHP a una base de datos SQL
+XX32	20	Insertar datos en nuestra de base de datos
+XX33	11	Listar nuestros usuarios de la base de datos
+
+D2
+
+XX34	18	Actualizar un Usuario en Nuestra Base de Datos
+XX35	4		Borrar un usuario de nuestra base de datos
+XX36	14	Cómo proteger nuestra base de datos ante ataques de SQL Injection
+
+Construyento Nuestro Propio Blog 00:43:00 (D2)
+
+XX37	19	Creando la vista principal del Blog usando Bootstrap
+XX38	13	Administrando los artículos del blog
+XX39	5		Guardando los blogposts en la base de datos
+XX40	6		Composer y carga automática de archivos
+
+Creando la Organización de Nuestro Blog 00:47:00 (D2)
+
+XX41	8		Introducción a Front Controller
+XX42	10	Introducción a Router
+XX43	10	Renderizando las vistas desde un método
+XX44	19	Agregando el resto de las rutas a nuestro Router
+
+MVC y Templates en Nuestro Blog 01:30:00 (D3)
+
+XX45	21	El patrón de diseño Model-View-Controller en PHP
+XX46	4		¿Por qué usar un motor de templates en PHP?
+XX47	8		Instalación y configuración de Twig
+XX48	11	Templates de vistas con Twig
+XX49	14	Extendiendo layouts con Twig
+XX50	13	Modelos con Eloquent
+XX51	7		Configuración de variables de entorno
+XX52	12	Validaciones de formularios en PHP
+
+Usuarios 00:44:00 (D4)
+
+XX53	7		Agregando un modelo para los usuarios del blog
+XX54	11	Crear usuarios para el blog
+XX55	17	Autenticación de usuarios en PHP
+XX56	9		Logout de usuarios
+
+Detalles Finales 00:41:00 (D4)
+
+XX57	7		Protege ciertas rutas con middlewares y filtros
+XX58	10	Subir archivos al servidores
+XX59	14	Guardando un log de errores en el servidor
+XX60	1		Página para el detalle del blogpost (reto)
+XX61	1		Paginación (reto)
+XX62	1		Editar y borrar blogposts (reto)
+63	8	Agregar validación del lado del cliente
+		2		Cierre del Curso

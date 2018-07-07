@@ -1,0 +1,26 @@
+***
+***
+para los que trabajamos en sublime, aquí dejaré varios plugins que serán de mucha ayuda.
+
+Laravel Docs.
+Laravel Blade Highlighter.
+Laravel Blade Auto​Complete.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Agrega Rutas en el Controller y Templates de Blade
+Ahora regresaremos a nuestro archivo web.php aprenderemos a agregar secciones de nuestro sitio implementando una página de “acerca de nosotros” en localhost:8000/acerca donde podemos mostrar información acerca de nuestra compañía o sitio web.
+
+Route::get('/about', function () {
+return 'acerca de nosotros';
+});
+Ahora generaremos una vista para mostrar en la nueva sección de nuestro sitio recién creada, con esto vamos a crear una nueva vista y la haremos copiando el contenido de nuestro archivo welcome.blade.php y lo modificaremos apra crear nuestra vista “acerca de nosotros”.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***

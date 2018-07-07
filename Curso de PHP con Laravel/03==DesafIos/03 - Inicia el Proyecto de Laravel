@@ -1,0 +1,206 @@
+***
+***
+La documentación de laravel para la instalacion. 
+https://laravel.com/docs/5.4
+
+***
+***
+Para quienes tengan duda de como instalar laravel con xampp y windows aquí les dejo un pequeño tutorial:
+
+*Es necesario tener ya instalado y configurado xampp.
+
+Primero que nada hay que Instalar composer aquí les dejo la URL https://getcomposer.org/ para que lo descarguen.
+
+Un vez instalado composer y previamente xampp, vamos a la carpeta HTCDOCS de XAMPP (en mi caso esta C:/xampp/htcdocs).
+
+Una vez en la Carpeta entramos a la consola de comando, le damos click derecho del mouse y despues en “abrir una consola de comando aquí”, si es windows 10 es shift + click derecho.
+
+En la consola de comando escribimos el siguiente composer create-project --prefer-dist laravel/laravel blog( la palabra blog es el nombre del proyecto le pueden poner el nombre que quieran) se les descarga los archivos necesarios para ejecutar laravel.
+
+Por ultimo para testear que todo esta bien ejecutan este codigo php artisan serve y les levantara el servidor en mi caso me sale http://localhost:8000 (es la url, la escribimos en el navegador y si todo esta bien tendran laravel 5.4 funcionando).
+
+***
+***
+Para las personas que quieran levantar el servidor web con un puerto diferente al 8000 esto se hace con la instrucción
+php artisan serve --port 9000
+
+***
+***
+¿Cual es la diferencia de instalar laravel con:
+
+composer global require "laravel/installer"
+o
+composer create-project --prefer-dist laravel/laravel blog ?
+
+El primero lo que hace es tener el instalador de laravel dentro de la carpeta donde esta instalado composer, y pone a disposición el comando laravel, con este comando puedes crear una aplicación usando el comando 
+
+laravel new blog
+
+, tienes que verificar que el path del ejecutable de laravel este en las variables de path de tu sistema operativo.
+
+Con el segundo instalas usando directamente composer y el comando create-project, en este tienes la ventaja que puedes seleccionar la versión de laravel que quieres instalar.
+
+composer create-project--prefer-dist laravel/laravel blog "5.4.*"
+
+Con ese comando se crea un proyecto llamado blog que usara la versión 5.4.* de laravel. Si quitas la versión instalara la última versión estable.
+
+***
+***
+Cómo instalar Laravel en Windows:
+Teniendo ya composer instalado, ejecutan el siguiente comando en el cmd de windows:
+
+composer global require "laravel/installer"
+Luego de ello van a las propiedades del sistema (Inicio/Equipo/Propiedades) y le dan a “Configuración avanzada del sistema”, ahí entran a “Variables de entorno”, seleccionan Path y le dan en Editar.
+
+En el valor de la variable, si ya hay valores, le dan punto y coma y agregan la siguiente línea:
+%APPDATA%\Composer\vendor\bin
+
+Guardan y listo, ya pueden ejecutar el comando:
+
+laravel new nombre_proyecto
+
+***
+***
+TUTORIAL DE INSTALACIÓN DE LARAVEL EN WINDOWS
+https://platzi.com/curso-php-laravel/tutoriales/instalar-laravel-53-con-xampp-y-composer-en-windows/
+
+***
+***
+Pequeño instructivo para la intación en linux “ubuntu” laravel, composer, php, apache,…
+
+GUIA DE INSTALACION DE PROYECTOS BAJO FRAMEWORK LARAVEL
+
+Para la instalacion del Framework Laravel se necesita seguir los siguientes pasos:
+
+Esta instalacion se realiza para Pcs, Servidores con sistema operativo Debian o cualquiera de sus derivados.
+
+Configuracion del servidor de aplicaciones
+Para la configuración del servidor de aplicaciones se adopto Apache aunque se puede usar
+nginx, lighttpd. u otro servidor que soporte Php.
+
+Para la instalacion del Servidor de aplicaciones Apache ejecuta el siguiente comando
+apt-get install apache
+
+Configuracion de Php.
+Tambien debes revisar adonde esta apuntando tu Servidor de Aplicaciones Apache:
+
+/var/www, /var/www/html, o adonde lo hayas configurado manualmente
+
+Esto para saber donde crear tus proyectos Laravel
+
+Debes permitir que el servidor de aplicaciones reescriba las url
+
+para hacer eso se debe modificar varios archivos
+
+Configurar el archivo http.conf o en su defecto apache2.conf
+habilitar ServerName dentro del archivo citado anteriormente,
+
+ServerName localhost
+
+Dependiendo de la version de Apache que tengas instalada se modifica el archivo de configuracion donde se permite la escritura
+
+El archivo puede ser httpd.conf, apache.conf, 000-default dentro de sites-enabled
+
+<Directory /var/www/>
+Options Indexes FollowSymLinks MultiViews
+AllowOverride None
+Order allow,deny
+allow from all
+</Directory>
+
+Cambiar AllowOverride None a (AllowOverride All) como esta en la parte de abajo.
+
+  <Directory /var/www/>
+            Options Indexes FollowSymLinks MultiViews
+            AllowOverride All
+            Order allow,deny
+            allow from all
+    </Directory>
+Tambien se habilita el modulo mod-rewrite en el servidor Apache
+
+ejecute el siguiente comando:
+
+a2enmod rewrite
+
+Seguido se reinicia el servidor de aplicaciones para este caso Apache.
+
+service apache2 restart
+
+Laravel soporta Php 5.3.7 o Superior.
+-Drivers Php para conexion a la base de datos.
+Pdo, Oci
+el driver depende de la base de datos a utilizar.
+Mysql, Postgresql, Oracle, etc.
+
+Para instalar php en tu maquina debes hacer lo siguiente:
+
+Ejecute el comando -> dpkg --get-selections | grep php7.0
+para constatar los paquetes, modulos de Php 7.0 que tienes instalados qen tu maquina.
+
+apt-get update
+apt-get install python-software-properties
+apt-get update
+apt-get install php7.0 php7.0-common curl php7.0-curl php7.0-gd php7.0-fpm php7.0-mcrypt
+
+Luego se reinicia el servicio apache:
+
+./etc/init.d/apache restart
+
+o
+
+service apache2 restart
+
+A veces pone problema el paquete php7.0-mcrypt, el cual no es reconocido por el Servidor Apache,
+con la siguiente instruccion configuras el php7.0 de manera manual.
+ln -s /etc/ph7.0/conf.d/mcrypt.ini /etc/php7.0/mods-available
+php7.0 enmod mcrypt
+service apache2 restart
+
+Si estas en tu maquina de desarrollo Tambien deben instalar composer.phar
+Laravel utiliza el composer para crear el proyecto por primera ves, o para descargar librerias paquetes que necesites en tu proyecto.
+por ejemplo los paquetes desarrollados por terceros o por ti.
+
+Ejecuta el siguiente comando para descargar el archivo composer:
+
+curl -sS https://getcomposer.org/installer | php
+
+Ubica el archivo en la ruta /usr/local/bin
+
+cp composer.phar /usr/local/bin/
+
+para ejecutar composer debes escribir el siguiente comando:
+
+php /usr/local/bin/composer.phar
+
+Para facilidad de uso del comando composer creale un alias de la siguiente manera.
+
+alias composer=“php /usr/local/bin/composer.phar”
+
+Esta instruccion la puedes poner en tu bashrc o en el archivo profile
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Inicia el Proyecto de Laravel
+
+Comenzaremos lanzando nuestro servidor de larevel y para inicializar el servidor utilizamos el comando “php artisan serve”
+
+php artisan serve
+Laravel nos genera todos los archivos necesarios para nuestro web app ahora seguiremos construyendo nuestra aplicación, modificaremos nuestros archivos de rutas y cómo mostrar html en laravel, comenzaremos editando el archivo web.php aquí observamos que tenemos en view: welcome, este es el archivo que se nos mostró al entrar a localhost:8000 y lo podemos editar para ver los cambios.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Mi proyecto está ubicado en y se llama:
+C:\xampp\htdocs
+laravel new lara
+C:\xampp\htdocs\lara
+
+Se debe levantar el servidor:
+http://127.0.0.1:8000
+con
+php artisan serve

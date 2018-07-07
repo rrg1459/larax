@@ -1,0 +1,68 @@
+Antes de Comenzar 00:03:00
+
+XX01	1		Introducción al Curso
+XX02	3		Instalación de Laravel
+
+Proyecto con Laravel 07:53:00
+
+XX03	4	Inicia el Proyecto de Laravel
+XX04	5	Agrega Rutas en el Controller y Templates de Blade
+05	9	Repeticiones y Condicionales en Templates de Blade
+06	8	Agrega un Controlador para Separar la Lógica de la Aplicación
+07	9	Crea Layouts en Blade para Evitar la Duplicación de Código
+08	15	Agregar Bootstrap a Nuestro Proyecto
+09	16	Corriendo Migraciones en Nuestra Base de Datos
+
+meta 1
+
+10	9	Usando Eloquent el ORM de Laravel
+11	11	Trae un Solo Mensaje de la Base de Datos
+12	7	Crea Formularios Seguros en Laravel
+13	19	Validación y Creación de Datos en Laravel con Eloquent
+14	14	Seeding y Model Factories
+
+meta 2
+
+15	5	Paginación de Mensajes
+16	20	Autenticación de Usuarios
+17	13	Modificar el Modelo Pre-generado de los Usuarios
+18	17	Relaciones belongsTo
+19	12	Relaciones hasMany en Eloquent
+20	19	Relaciones belongsToMany en Eloquent
+21	12	Implementación de Unfollow
+22	3	Crear aplicación en Facebook Developers
+23	11	Agregar Autenticación con Redes Sociales
+24	18	Registrar Usuarios con Datos de Redes Sociales
+25	3	Login con Facebook
+26	14	Autorización para envío de mensajes
+27	18	Mostrar Mensajes en la Aplicación
+28	7	Asegurar sólo una Conversación por Usuario
+29	12	File Uploads
+30	13	Páginas de Error (404, 500)
+31	6	Página de Búsqueda de Mensajes
+32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
+33	12	Implementa Algolia Proyecto
+34	3	Busca por Autor de Mensaje Utilizando Algolia
+35	21	Unit Testing en Laravel
+36	10	Utiliza Laravel Mix para Generar el JavaScript y CSS para el Frontend
+37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
+38	16	Obtén las Respuestas en el Frontend de la Aplicación
+39	12	Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
+40	7	Guarda las Notificaciones en la Base de Datos
+41	13	Muestra las Notificaciones en el Frontend de Laratter
+42	16	¡Ahora muéstralas en tiempo real!
+43	19	Llevando Laratter a Producción en Heroku
+44		Conclusiones y Cierre del Curso
+
+
+Desafíos
+
+45		Implementar login con Twitter/Github
+46		Usuarios Privados
+47		Hashtags y Mentions
+
+Contenido Bonus 0:20:00
+
+48	12	Traducciones de Contenido Estático i18n
+49	8	Artisan Custom Commands
+
