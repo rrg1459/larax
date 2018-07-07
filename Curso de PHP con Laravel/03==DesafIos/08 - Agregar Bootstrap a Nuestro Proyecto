@@ -1,0 +1,27 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Agregar Bootstrap a Nuestro Proyecto
+Ahora agregaremos Bootstrap a nuestro proyecto para poder acelerar el proceso de desarrollo, en la sección de enlaces puedes acceder a la versión qu estaremos utilizando
+
+Vamos a empezar a desarrollar nuestro proyecto, vamos a borrar todo el contenido default de nuestro sitio y vamos a comenzar a diseñar la página principal de nuestro sitio.
+
+Puedes aprender bootstrap a fondo aquí en Platzi: 
+https://platzi.com/clases/fw-frontend/
+
+El recurso que utilizaremos para obtener imágenes de prueba es el siguiente 
+http://lorempixel.com/
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Como esta blog no va a tener seccion acerca de nosotros se borra-.
+resources\views\welcome.blade.php la seccion de /acerca
+ la ruta en web.php
