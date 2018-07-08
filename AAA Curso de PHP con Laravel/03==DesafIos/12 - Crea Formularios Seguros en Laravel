@@ -1,0 +1,18 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Crea Formularios Seguros en Laravel
+Ahora aprenderemos cómo crear formularios seguros con laravel, una vez teniendo nuestro input de texto crearemos una ruta para manejar los comandos posts del navegador utilizando el comando Route::post(’/messages/create’, ‘MessagesController@create’); y además estamos enviando un formulario que no hemos vinculado a laravel y este como medida de seguridad nos pide un Csrf Token ó cross-site request forgery si no, alguien nos podría enviar un formulario desde otro sitio con código malicioso.
+
+Para solucionar esto, en el archivo welcome.blade.php debemos de generar nuestro token para ese formulario utilizando el comando {{ csrf_field() }} y esto es una función que nos facilita laravel para generar el token por sesión.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
