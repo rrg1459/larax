@@ -1,0 +1,22 @@
+***
+***
+me gusto mas esta herramienta de imagenes, lorempixel se pega mucho 
+http://placeimg.com/450/300?1
+
++++
++++
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Trae un Solo Mensaje de la Base de Datos
+En este video utilizaremos de nuevo los comandos @extends y @section para poder crear una página web donde se muestre a detalle un mensaje dado.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:controller MessagesController
