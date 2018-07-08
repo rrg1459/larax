@@ -1,0 +1,62 @@
+***
+***
+Con el siguiente comando ejecutamos se hace rollback de las migrations y se vuelven a generar y ejecutamos el seed para insertar en la base de datos.
+php artisan migrate:refresh --seed
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Seeding y Model Factories
+Vamos a utilizar un par de propiedades de laravel que nos permitirán tener usuarios en nuestra base de datos
+debajo vamos a agregar una definición para poder hacer lo mismo con los mensajes, en este caso definiremos nuestros mensajes que funcionarán como tweets
+
+Para generar la información de nuestros usuarios y mensajes utilizaremos
+la herramienta faker con esto podemos generar palabras, párrafos, texto real extraído en algún libro, imágenes
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
+        'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+    return [
+        'content' => $faker->realText(random_int(20, 160)),
+        'image' => $faker->imageUrl(600, 338)
+    ];
+});
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan tinker
+
+$message = factory(App\Message::class)->make()
+
++++
++++
+
+php artisan migrate:refresh --seed

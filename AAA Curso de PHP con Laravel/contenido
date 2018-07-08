@@ -18,7 +18,7 @@ meta 1
 XX10	9	Usando Eloquent el ORM de Laravel
 XX11	11	Trae un Solo Mensaje de la Base de Datos
 XX12	7	Crea Formularios Seguros en Laravel
-13	19	Validación y Creación de Datos en Laravel con Eloquent
+XX13	19	Validación y Creación de Datos en Laravel con Eloquent
 14	14	Seeding y Model Factories
 
 meta 2
