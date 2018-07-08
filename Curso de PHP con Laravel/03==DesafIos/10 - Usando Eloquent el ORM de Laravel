@@ -1,0 +1,42 @@
+***
+***
+Model
+
+Para crear una clase de tipo Model
+
+php make:model <name>
+
+Ejemplo
+
+php         make:model Message
+php artisan make:model Message
+
+Nota: Es importante que el nombre de la clase model sea el singular de la tabla a la que queremos hacer referencia. Por ejemplo si tenemos una tabla con nombre messages, el nombre de nuestra clase model debe ser Message. Si tenemos una tabla con nombre message_contents, el nombre de nuestra clase model debe ser MessageContent
+
++++
++++
+ORM
+Object-Relational mapping
+
+El mapeo objeto-relacional (más conocido por su nombre en inglés, Object-Relational mapping, o sus siglas O/RM, ORM, y O/R mapping) es una técnica de programación para convertir datos entre el sistema de tipos utilizado en un lenguaje de programación orientado a objetos y la utilización de una base de datos relacional como motor de persistencia.
+
+fuente:
+https://es.wikipedia.org/wiki/Mapeo_objeto-relacional
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Usando Eloquent el ORM de Laravel
+Ahora aprenderemos a utilizar eloquent para definir el modelo que utilizaremos para generar nuestros mensajes
+
+Un ORM es una librería que nos ayuda a convertir una base de datos relacional, a un esquema de objetos por esto los mensajes los manejaremos como un objeto y estos se irán almacenando en nuestra base de datos
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:model Message
+Se crea el modelo en app\Message.php

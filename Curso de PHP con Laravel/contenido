@@ -28,17 +28,26 @@ meta 2
 17	13	Modificar el Modelo Pre-generado de los Usuarios
 18	17	Relaciones belongsTo
 19	12	Relaciones hasMany en Eloquent
+
+meta 3
+
 20	19	Relaciones belongsToMany en Eloquent
 21	12	Implementación de Unfollow
 22	3	Crear aplicación en Facebook Developers
 23	11	Agregar Autenticación con Redes Sociales
 24	18	Registrar Usuarios con Datos de Redes Sociales
+
+meta 4
+
 25	3	Login con Facebook
 26	14	Autorización para envío de mensajes
 27	18	Mostrar Mensajes en la Aplicación
 28	7	Asegurar sólo una Conversación por Usuario
 29	12	File Uploads
 30	13	Páginas de Error (404, 500)
+
+meta 5
+
 31	6	Página de Búsqueda de Mensajes
 32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
 33	12	Implementa Algolia Proyecto
@@ -46,6 +55,9 @@ meta 2
 35	21	Unit Testing en Laravel
 36	10	Utiliza Laravel Mix para Generar el JavaScript y CSS para el Frontend
 37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
+
+meta 6
+
 38	16	Obtén las Respuestas en el Frontend de la Aplicación
 39	12	Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
 40	7	Guarda las Notificaciones en la Base de Datos
@@ -54,6 +66,7 @@ meta 2
 43	19	Llevando Laratter a Producción en Heroku
 44		Conclusiones y Cierre del Curso
 
+meta 7
 
 Desafíos
 
