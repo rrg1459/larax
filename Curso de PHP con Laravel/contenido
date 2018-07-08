@@ -10,8 +10,8 @@ XX04	5	Agrega Rutas en el Controller y Templates de Blade
 XX05	9	Repeticiones y Condicionales en Templates de Blade
 XX06	8	Agrega un Controlador para Separar la Lógica de la Aplicación
 XX07	9	Crea Layouts en Blade para Evitar la Duplicación de Código
-08	15	Agregar Bootstrap a Nuestro Proyecto
-09	16	Corriendo Migraciones en Nuestra Base de Datos
+XX08	15	Agregar Bootstrap a Nuestro Proyecto
+XX09	16	Corriendo Migraciones en Nuestra Base de Datos
 
 meta 1
 

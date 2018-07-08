@@ -1,0 +1,74 @@
+***
+***
+Migrations
+
+Nos permite modificar nuestro esquema de base de datos de una manera específica. Cada migration que creamos nos puede ayudar a mantener un histórico de nuestra base de datos, es decir, podemos saber que se ha realizado a lo largo de la vida del proyecto en nuestra base de datos.
+
+Crear una nueva migration:
+
+php artisan make:migration <name> --create <table_name>
+
+ejemplo
+
+php artisan make:migration create_message_table --create messages
+
+Alterar la estructura de una tabla:
+
+php artisan make:migration <name> --table <table_name>
+
+ejemplo
+
+php artisan make:migration add_created_at_index_to_messages_table --table messages
+
+Ejecutar todas las migration:
+
+php artisan migrate
+
+Revertir la última migration ejecutada:
+
+php artisan migrate:rollback
+
+Revertir todas las migrations ejecutadas
+
+php artisan migrate:reset
+
+Revertir todas las migration y volver a ejecutarlas:
+
+php artisan migrate:refresh
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Corriendo Migraciones en Nuestra Base de Datos
+Ahora aprenderemos a configurar nuestra base de datos para poder utilizarza en nuestros proyectos con laravel, para esto necesitamos tener instalado en nuestro entorno local un servicio mySQL en el puerto 3306 que es el que este utiliza comúnmente.
+
+Modificaremos nuestro archivo de entorno (.env) y aquí tenemos que colocar los datos requeridos para la autentificación, es decir, colocar el nombre de la base de datos, el nombre del usuario y la contraseña que ustedes estén utilizando, siempre que hagamos cambios en nuestro archivo de entorno tenemos que detener artisan y volver a ejecutarlo.
+
+A continuación comenzaremos a darle forma a nuestro esquema de base de datos utilizando la herramienta de laravel llamada "migration"
+Para crear migrations vamos a utilizar artisan con los comandos:
+
+php artisan make:migration [ argumentos ]
+En este caso crearemos la tabla para almacenar nuestros mensajes utilizando php artisan
+
+php artisan make:migration create_messages_table --create messages
+y la vamos a encontrar en la carpeta principal de nuestro proyecto, en la subcarpeta migrations.
+
+Una vez preparada nuestra migración debemos ejecutar php artisan migrate y esto ejecutará todas las migraciones que tengamos.
+
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:migration create_messages_table --create messages
+php artisan make:migration create_messages_table --create messages
+
+php artisan migrate (ejecutar todas las migraciones que estén pendientes)
+
+las vamos a usar mas adelante ( lo dijo en el minuto 5:40)
+
+php artisan make:migration add_created_at_index_to_messages_table --table messages
+php artisan make:migration add_created_at_index_to_messages_table --table messages
