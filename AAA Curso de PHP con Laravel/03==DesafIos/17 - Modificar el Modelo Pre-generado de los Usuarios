@@ -1,0 +1,43 @@
+***
+***
+¿Cuando se utiliza el fillable o el guarded?.
+
+El array Fillable indica los campos normales que un usuario debe ingresar de forma obligatoria cuando se construye el objeto User y se mapea con la DB. por su parte el array Guarded indica los campos de la tabla que no pueden ser accedidos de forma común (como el nombre, avatar, email), ni mostrados de forma publica, (contraseñas, números de direcciones, id’s… etc) de cierta forma laravel los guarda o “protege”.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Modificar el Modelo Pre-generado de los Usuarios
+En el video anterior vimos cómo generar el modelo de usuarios y como usar Laravel para autenticarnos, en este video veremos cómo modificar ese modelo para que se adapte a lo que queremos hacer, vamos a agregar un nombre de usuario y vamos a agregar un avatar.
+
+Empezaremos desde nuestra migration para eso vamos al terminal y creamos una nueva “migration” usando el comando:
+
+php artisan make: add_username_and_avatar_to_users_table --table users
+Después utilizaremos los settins unique y nulleable para colocar condiciones especiales a nuestros nuevos campos, primero haremos que el ´username´ sea único con el siguiente comando:
+
+$table->string('username')->unique();
+Y haremos que el avatar sea opcional con los siguientes comandos:
+
+$table->string('avatar')->nullable();
+Por último crearemos la lógica en nuestros controllers para poder validar la información que estamos recibiendo, esto es muy importante para evitar tener problemas de usuarios/correos duplicados, ya hechas la validaciones tenemos que especificar los errores a mosotrar.
+
+Puedes descargar los archivos con el código que se escribió en esta clase y son:
+
+register.blade.php
+web.php
+RegisterController.php
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:migration add_username_and_avatar_to_users_table --table users
+
+php artisan migrate
+
++++
++++
+http://placeimg.com/450/300?1
