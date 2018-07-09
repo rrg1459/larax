@@ -1,0 +1,38 @@
+***
+***
+¿Cómo traigo los mensajes en orden invertido?
+
+$messages = Message::orderBy('id', 'DESC')->paginate(10);
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Paginación de Mensajes
+En el video pasado generamos muchos datos en nuestra base de datos, ahora vamos a paginar nuestro sitio y crear páginas para dividir nuestros mensajes para esto llamaremos la clasee PagesController invocando el método “Paginate()” este método tiene un parámetro opcional para definir cuantos mensajes traer por página y así de fácil podemos agregar paginación a nuestros sitios con ayuda de eloquent.
+
+
+
+namespace App\Http\Controllers;
+
+use App\Message;
+use Illuminate\Http\Request;
+
+class PagesController extends Controller
+{
+    public function home()
+    {
+        $messages = Message::paginate(10);
+
+        return view('welcome', [
+            'messages' => $messages,
+        ]);
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
