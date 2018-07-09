@@ -1,0 +1,48 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Autenticación de Usuarios
+En este video aprenderemos a crear un sistema de Log in utilizando el comando:
+php artisan make:auth
+Este comando nos permitirá crear un sistema de registro, inicio de sesión y recuperación de contraseña estándar.
+
+A partir de aquí tendremos un par de botones nuevos para hacer LogIn y Registrarse, ahora tenemos un formulario pre-generado con:
+Name
+E-Mail
+Password
+Confirm Password
+
+Lo probaremos y después debemos hacer cerrar sesión, hacer Log In y por último cambiar estos textos a español.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+
+9.45  minuto
+
++++
++++
+Hoy 9 de julio de 2018 puedo confirmar que Laravel ya trabaja con  Bootstrap 4,
+
+en las dos primeras lineas de public\css\aspp.css
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+ * Bootstrap v4.0.0 (https://getbootstrap.com)
+
+y en los archivos del profesor en las dos primeras lineas de public\css\aspp.css
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+
+ a partir del minuto 9:45 es puro css, que con  Bootstrap 4 ya viene todo configurado, la única excepcion para que tome los margenes a los lados correctamente es en el minuto 11:23 como dice el profesor, cambiar en app.blade.php.
+esto: 
+    <div id="app">
+por esto:
+    <div id="app" class="container">
