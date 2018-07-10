@@ -1,0 +1,74 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Relaciones belongsTo
+En este video vamos a aprender a relacionar los usuarios con sus publicaciones correspondientes utilizando relaciones con belongsTo
+
+Para poder decir que un mensaje pertenece a un usuario debemos asegurarnos de que cada mensaje tenga el ID del usuario al que pertenece, esto lo haremos con el siguiente comando:
+
+php artisan make:migration add_user_id_column_to_massages_table --table messages
+Con las pruebas que tenemos, podemos continuar y vamos a hacer un “drop” de nuestra base de datos para luego volverla a crear
+utilizando los comandos:
+
+php artisan migrate:reset
+y
+
+php artisan migrate
+Podemos entrar a Workbench para revisar que se creen los campos que requerimos-
+
+Luego vamos a trabajar en el controlador “MessagesController.php” aquí podemos ver que está llamando a la función “create” y después de eso tenemos que asegurarnos que sólo los usuarios que iniciaron sesión puedan entrar.
+
+Luego prepararemos la configuración para hacer seeding nuevamente a nuestra base de datos y generar los contenidos necesarios.
+
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(App\User::class, 50)->create()->each(function(App\User $user){
+            factory(App\Message::class)
+                ->times(20)
+                ->create([
+                    'user_id' => $user->id,
+                ]);
+        });
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:migration add_user_id_column_to_messages_table --table messages
+
+php artisan migrate
+da un rror porque no puede haber una clave foraena vacía, se debe restear el migrate y ejecutarlo de nuevo
+
+php artisan migrate:reset
+php artisan migrate:reset
+
++++
++++
+en routes\web.php
+
+Route::post('/messages/create', 'MessagesController@create')->middleware('auth');
+
+middleware: antes de llegar al controller, va a haber una capa que se llama middleware que va a proteger ese pedido, y particularmente la capa auth chequea que el usuario esté logeado, si no está logeado va a volver atrás ese contenido, ahora si podemos garantizar en el controller que ese pedido tiene un usuario logeado.
+
++++
++++
+php artisan db:seed

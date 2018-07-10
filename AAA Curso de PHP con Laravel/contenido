@@ -25,7 +25,7 @@ meta 2
 
 XX15	5	Paginación de Mensajes
 XX16	20	Autenticación de Usuarios
-17	13	Modificar el Modelo Pre-generado de los Usuarios
+XX17	13	Modificar el Modelo Pre-generado de los Usuarios
 18	17	Relaciones belongsTo
 19	12	Relaciones hasMany en Eloquent
 

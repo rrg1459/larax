@@ -9,3 +9,15 @@
 7 Revisar los aportes de los alumnos para posible agregado al contenido
 
 8 Empezar la clase
+
+
+
+
+
+comandos
+========
+
+c:
+cd \xampp\htdocs\larax
+
+php artisan serve

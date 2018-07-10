@@ -9,11 +9,19 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        factory(App\Message::class)
-        	->times(45)
-        	->create();
+        factory(App\User::class, 5)->create()->each(function(App\User $user){
+            factory(App\Message::class)
+                ->times(20)
+                ->create([
+                    'user_id' => $user->id,
+                ]);
+        });
     }
 }
+
+
+
+
