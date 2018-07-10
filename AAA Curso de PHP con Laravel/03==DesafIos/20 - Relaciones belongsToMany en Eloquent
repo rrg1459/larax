@@ -1,0 +1,64 @@
+***
+***
+si alguien no puede loguearse y le salen los mensajes de property non-object muy posiblemente se trate de que en web.php la linea Auth::routes(); la tengan al final, ponganla al principio mejor.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+<?php
+namespace App\Http\Controllers;
+use App\User;
+use Illuminate\Http\Request;
+class UsersController extends Controller
+{
+    public function show($username)
+    {
+        $user = $this->findByUsername($username);
+        return view('users.show', [
+            'user' => $user,
+        ]);
+    }
+    public function follow($username, Request $request)
+    {
+        $user = $this->findByUsername($username);
+        $me = $request->user();
+        $me->follows()->attach($user);
+        return redirect("/$username")->withSuccess('Usuario seguido!');
+    }
+    public function follows($username)
+    {
+        $user = $this->findByUsername($username);
+        return view('users.follows', [
+            'user' => $user
+        ]);
+    }
+    private function findByUsername($username)
+    {
+        return User::where('username', $username)->first();
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Para crear la tabla followers se debe poner este comando a nivel de la consola.
+
+php artisan make:migration create_followers_table --create followers
+
++++
++++
+php artisan migrate
+
++++
++++
+php artisan migrate:refresh --seed
+
+
+
+
+
+minuto 12.10
