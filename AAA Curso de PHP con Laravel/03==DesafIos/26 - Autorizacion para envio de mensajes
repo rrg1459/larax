@@ -1,0 +1,127 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Autorización para envío de mensajes
+
+Vamos a implementar la función de permitir algunas acciones en casos específicos, usaremos mensajes privados para demostrar esta capacidad.
+
+Para poder mandar un mensaje privado el usuario debe de ser seguidor tuyo tal como funciona en twitter.
+
+Como ya se lo deben imaginar, debemos crear sus correspondientes controllers y migrations.
+
+Para crear la migración debemos ejecutar el siguiente comando:
+
+php artisan make:migration create_conversation_user_table --create conversation_user
+Luego debemos ir a las migrations y hacemos las referencias que necesitamos tener dentro de la clase que se creó, el código es el siguiente:
+
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateConversationUserTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('conversation_user', function (Blueprint $table) {
+            $table->integer('conversation_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+
+            $table->primary(['conversation_id', 'user_id']);
+
+            $table->foreign('conversation_id')->references('id')->on('conversations');
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('conversation_user');
+    }
+}
+Por último debemos crear las condicioines necesarias para que sólo podamos mandar mensajes privados a los usuarios que nos siguen esto lo haremos en el archivo show.blade.php que muestro a continuación:
+
+@extends('layouts.app')
+
+@section('content')
+<h1>{{ $user->name }}</h1>
+<a href="/{{ $user->username }}/follows" class="btn btn-link">
+    Sigue a <span class="badge badge-default">{{ $user->follows->count() }}</span>
+</a>
+
+<a href="/{{ $user->username }}/followers" class="btn btn-link">
+    Seguidores <span class="badge badge-default">{{ $user->followers->count() }}</span>
+</a>
+
+
+@if(Auth::check())
+    @if(Gate::allows('dms', $user))
+        <form action="/{{ $user->username }}/dms" method="post">
+            <input type="text" name="message" class="form-control">
+            <button type="submit" class="btn btn-success">
+                Enviar DM
+            </button>
+        </form> 
+    @endif
+
+    @if(Auth::user()->isFollowing($user))
+
+    <form action="/{{ $user->username }}/unfollow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-danger">Dejar de seguir</button>
+    </form>
+
+    @else
+    <form action="/{{ $user->username }}/follow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-primary">Seguir</button>
+    </form>
+    @endif
+@endif
+<div class="row">
+@foreach($user->messages as $message)
+    <div class="col-6">
+        @include('messages.message')
+    </div>
+@endforeach
+</div>
+
+@endsection
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Los dos comandos artisan usados por el profesor en esta clase
+php artisan make:model Conversation --migration
+
+php artisan make:model PrivateMessage --migration
+
+Para crear la tabla intermedia:
+php artisan make:migration create_conversation_user_table --create conversation_user
+
+Por último se corre el migrate para que se cree la table en la BD
+php artisan migrate
