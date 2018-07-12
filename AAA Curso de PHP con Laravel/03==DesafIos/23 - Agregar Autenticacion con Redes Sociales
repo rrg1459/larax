@@ -1,0 +1,66 @@
+***
+***
+Para los que tengan problemas con el https, debemos procurrar que tanto en services.php como en developers.facebook.com tengamos la pagina localhost con https, asi si hara el request, y les mostrará la pagina de login con facebook.
+El problema viene cuando le dan aceptar y como no hay certificado https no podemos entrar a tal link de callback redirect.
+Pero estuve arduamente investigando hasta que encontré ngrok, que te permite hacer tuneles http a https sin tocar apache2.conf o configurar mas, en linux(en mi caso):
+
+https://ngrok.com/download
+
+Descargas, descomprimes
+Activas artisan serve
+y en otra consola ./ngrok --help
+y para haacer el tunneling: ./ngrok http 8000
+para hacerle tunneling al server localhost y el port 8000
+ahi mismo en la consola les dara el hostname publico
+que te prestaran por 8 horas para hacer tus pruebas. Abre desde el navegador y tendras tu web desde localhost con https
++++
+Recuerden cambiar localhost:8000 por ese hostname en developers.facebook y services.php
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Agregar Autenticación con Redes Sociales
+Ahora procederemos a agregar laravel socialite y sus dependencias necesarias para utilizar laravel socialite y lo haremos por medio de composer ejecutando el siguiente comando.
+
+composer require larave/socialite
+Lo agregamos a nuestro pryecto en la ruta: —/config/app.php
+
+'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+El siguiente paso consiste en añadir y crear los nuevos controllers a nuestro archivo web.php donde estamos definiendo todas nuestras rutas:
+
+Auth::routes();
+Route::get('/auth/facebook', 'SocialAuthController@facebook');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+Route::post('/auth/facebook/register', 'SocialAuthController@register
+Y la instrucción para crear controllers es:
+
+php asrtisan make:controller SocialAuthController
+Por último crearemos la lógica de nuestros controladores y probaremos nuestro feature.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+composer require laravel/socialite
+
++++
++++
+php artisan make:controller SocialAuthController
+
+
+https://localhost/auth/facebook/callback
+
+
+
++++
++++
+Identificador de la aplicación 		603731003360050
+Clave secreta de la aplicación 		a7db9f319c4d08959bdb7ed51c9b8d74
+Token de cliente					3a6784bfa990fcf2ba908b3f17f77e85
+
+
+
+mionuto 9.13

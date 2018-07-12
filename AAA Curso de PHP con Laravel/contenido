@@ -33,7 +33,7 @@ meta 3
 
 XX20	19	Relaciones belongsToMany en Eloquent
 XX21	12	Implementación de Unfollow
-22	3	Crear aplicación en Facebook Developers
+XX22	3	Crear aplicación en Facebook Developers
 23	11	Agregar Autenticación con Redes Sociales
 24	18	Registrar Usuarios con Datos de Redes Sociales
 
