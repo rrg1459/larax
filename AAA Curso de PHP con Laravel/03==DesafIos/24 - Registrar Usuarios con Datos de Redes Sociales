@@ -1,0 +1,89 @@
+***
+***
+en laravel 5.6 para obetener los datos de la session deben hacer
+
+$data = $request->session()->get('facebookUser');
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Registrar Usuarios con Datos de Redes Sociales
+Ahora haremos registro de sesión con Facebook y crearemos la conexión de nuestro usuario de laratter con nuestro usuario de Facebook y las credenciales las guardaremos en una variable de entorno por cuestión de seguridad la delaración de estar variables se hace en el archivo .env de la siguiente manera:
+
+FACEBOOK_ID=1652389918396878
+
+FACEBOOK_SECRET=21c68d011d7f1815cf4aa046e6d935ef
+Además tenemos que implementar los cambios necesarios en el archivo SocialAuthController:
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\User;
+use App\SocialProfile;
+use Illuminate\Http\Request;
+use Socialite;
+
+class SocialAuthController extends Controller
+{
+    public function facebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function callback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $existing = User::whereHas('socialProfiles', function ($query) use ($user) {
+            $query->where('social_id', $user->id);
+        })->first();
+
+        if ($existing !== null) {
+            auth()->login($existing);
+
+            return redirect('/');
+        }
+
+        session()->flash('facebookUser', $user);
+
+        return view('users.facebook', [
+            'user' => $user,
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $data = session('facebookUser');
+
+        $username = $request->input('username');
+
+        $user = User::create([
+            'name' => $data->name,
+            'email' => $data->email,
+            'avatar' => $data->avatar,
+            'username' => $username,
+            'password' => str_random(16),
+        ]);
+
+        $profile = SocialProfile::create([
+            'social_id' => $data->id,
+            'user_id' => $user->id,
+        ]);
+
+        auth()->login($user);
+
+        return redirect('/');
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:model SocialProfile
+
+php artisan make:migration create_social_profiles_table --create social_profiles

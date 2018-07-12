@@ -54,23 +54,18 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
-
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             </div>
                         </div>
                     </form>
+                    <a href="/auth/facebook" class="btn btn-primary">
+                        Login con Facebook
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="row">
-<a href="/auth/facebook" class="btn btn-primary">
-        Login con Facebook
-    </a>
-</div>
-
 @endsection
