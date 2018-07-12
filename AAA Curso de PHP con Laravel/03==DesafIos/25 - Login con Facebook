@@ -1,0 +1,48 @@
+***
+***
+Por cuestiones de rendimiento en una aplicación muy grande, es mejor evitar el whereHas, una alternativa con buen rendimiento sería esta:
+
+$existing = User::whereIn('users.id', function($query) use($user) {
+                    $query->from('social_profiles')
+                            ->select('social_profiles.user_id')
+                            ->where('social_profiles.social_id', $user->id);
+                })->first();
+El whereHas hace un scan de toda la tabla teniendo una perdida enorme de rendimiento en tablas con muchos registros.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Login con Facebook
+En el video anterior logramos registrar un usuario con Facebook ahora, veremos cómo hacer que los usuarios hagan Log In automático con Facebook.
+
+Para eso voy a ir al archivo SocialAuthController.php y utilizaremos una query avanzada de eloquent:
+
+    public function callback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $existing = User::whereHas('socialProfiles', function ($query) use ($user) {
+            $query->where('social_id', $user->id);
+        })->first();
+        if ($existing !== null) {
+            auth()->login($existing);
+
+            return redirect('/');
+        }
+
+        session()->flash('facebookUser', $user);
+
+        return view('users.facebook', [
+
+            'user' => $user,
+        ]);
+    }
+Y en esta query voy a tener un usuario existente o no, según esto iniciaremos sesión y dejaremos que vaya al home en caso de que si exista y si no lo podemos mandar a registrarse.
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***

@@ -35,7 +35,7 @@ XX20	19	Relaciones belongsToMany en Eloquent
 XX21	12	Implementación de Unfollow
 XX22	3	Crear aplicación en Facebook Developers
 XX23	11	Agregar Autenticación con Redes Sociales
-24	18	Registrar Usuarios con Datos de Redes Sociales
+XX24	18	Registrar Usuarios con Datos de Redes Sociales
 
 meta 4
 
@@ -46,7 +46,7 @@ meta 4
 29	12	File Uploads
 30	13	Páginas de Error (404, 500)
 
-meta 5
+meta 5 (obj minime)
 
 31	6	Página de Búsqueda de Mensajes
 32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
@@ -56,7 +56,7 @@ meta 5
 36	10	Utiliza Laravel Mix para Generar el JavaScript y CSS para el Frontend
 37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
 
-meta 6
+meta 6 (obj exigente)
 
 38	16	Obtén las Respuestas en el Frontend de la Aplicación
 39	12	Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
