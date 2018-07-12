@@ -1,0 +1,78 @@
+***
+***
+hay una solución sencilla sin tanta pendejada como romperse la cabeza para configurar un vagrant, o hacer certificados ssl locales, o cosas así, usando una sencilla herramienta de localtunnel o conocido tambien tunnelme.
+
+aqui la url: https://localtunnel.github.io/www/
+
+instalen ese servicio via npm, y levantan un tunel, este les genera un url https a su localhost, “deben especificar el puerto donde tienen configurado el localhost”. este servicio les genera un url “algo largo” pero efectivo para culminar exitosamente este ejercicio 😄
++++
+Buen aporte, pero con Homestead o Valet(MAC), es una experiencia más profesiona… para poner en practica en la vida …
+
++++
++++
+Para los que necesiten usan certificados SSL válidos, aquí hay un pequeño tutorial de como tener SSL auto-firmados. Facebook los acepta.
+http://blog.getpostman.com/2014/01/28/using-self-signed-certificates-with-postman/
+
++++
++++
+Se pueden adquirir certificados ssl por 3 meses y renovables en:
+https://zerossl.com/
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Crear aplicación en Facebook Developers
+Vamos a comenzar a trabajar con redes sociales, vamos a ver cómo registrarnos con Facebook para poder utilizar su sitema de iniciar sesión en nuestra aplicación.
+
+Lo primero es inicar sesión y en la esquina superior derecha debemos elegir mis aplicacions y luego ir a nueva aplicación.
+
+Después de eso tenemos que llenar la información que se nos pide para nuestra aplicación, en este caso la categoría es “Aplicaciones para páginas.”
+
+Una vez terminamos este proceso nos lleva a nuestro dashboard de la aplicación, el producto que vamos a agregar es inicio de sesión con Facebook, y tenemos que configurar nuestra url a utilizar para los usuarios que inicien sesión efectivamente.
+
+Por ahora utilizaremos:
+
+http://localhost:8000/auth/facebook/callback
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+me logee con la cuenta facebook rrg1459@hotmail.com
+
++++
++++
+en facebook
+IDENTIFICADOR DE LA APLICACIÓN: 603731003360050
+
+Agregar un producto "Inicio de sesion con facebook"
+
++++
++++
+codigo facebook
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '{your-app-id}',
+      cookie     : true,
+      xfbml      : true,
+      version    : '{api-version}'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
