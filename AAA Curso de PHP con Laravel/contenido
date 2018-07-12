@@ -31,7 +31,7 @@ XX19	12	Relaciones hasMany en Eloquent
 
 meta 3
 
-20	19	Relaciones belongsToMany en Eloquent
+XX20	19	Relaciones belongsToMany en Eloquent
 21	12	Implementación de Unfollow
 22	3	Crear aplicación en Facebook Developers
 23	11	Agregar Autenticación con Redes Sociales

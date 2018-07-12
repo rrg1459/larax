@@ -1,0 +1,102 @@
+***
+***
+Por favor, que alguien explique por en el modelo se utiliza follows como propiedad y no como método. Me parece increible que Guido no conteste!
+
+Se usa como propiedad porque se esta accediendo a un método interno de follows.
+
+yo lo veo de la siguiente forma:
+
+follow : cuando se quiere obtener algo de esa relacion, traer algun dato que ya existe.
+
+follow(): cuando se quiere modificar,crear,borrar la relación
+
++++
++++
+Por que en el método creado en el modelo User se coloca como parámetro User $user y no solo $user
+
+//Metodo que nos permite saber si en la relación contiene el usuario enviado por parametro, devuelve un true
+    public function isFollowing(User $user)
+    {
+        return $this->follows->contains($user);
+    }
+
+Se le dice a la función el tipo de dato que es $user en este caso es un dato de tipo User.
+
++++
++++
+por que la funcion de isFollowing escrita asi funciona
+
+return $this->follows->contains($user)
+pero de esta manera no?
+
+return $this->follows()->contains($user)
+no se supone que estamos accediendo a una funcion dentro de la misma clase?
+
+Creo que es porque estas accediendo directamente a un método interno de follows que es contains de la relación belongsToMany
++++
+yo lo veo de la siguiente forma:
+
+follow : cuando se quiere obtener algo de esa relacion, traer algun dato que ya existe.
+follow(): cuando se quiere modificar,crear,borrar la relación
++++
+Justo lo que menciona david. Uno es para obtener info y el otro para modificar.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Implementación de Unfollow
+En el video anterior inmplementa os como un usuario puede seguir a otro usuario, ahora terminaremos esta funcionalidad implementando un botón para dejar de seguir usuarios, compondremos el error que tenemos de mostrar el botón de seguir a los usuarios que no han iniciado sesión y además haremos que si un usuario ya sigue a un usuario este deje de tener la opción de seguir al mismo usuario.
+
+Esto lo haremos llendo a resources>views>users>show.blade.php y aqui usaremos un par de condicionales la primera sera revisar si ya sigo a un usuario es decir a la variable $user y lo haremos implmentando un metodo que se encargue de comprobar si est[a siguiendo al usuario o no.
+
+@extends('layouts.app')
+
+@section('content')
+<h1>{{ $user->name }}</h1>
+<a href="/{{ $user->username }}/follows" class="btn btn-link">
+    Sigue a <span class="badge badge-default">{{ $user->follows->count() }}</span>
+</a>
+
+<a href="/{{ $user->username }}/followers" class="btn btn-link">
+    Seguidores <span class="badge badge-default">{{ $user->followers->count() }}</span>
+</a>
+
+
+@if(Auth::check())
+    @if(Auth::user()->isFollowing($user))
+
+    <form action="/{{ $user->username }}/unfollow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-danger">Dejar de seguir</button>
+    </form>
+
+    @else
+    <form action="/{{ $user->username }}/follow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-primary">Seguir</button>
+    </form>
+    @endif
+@endif
+<div class="row">
+@foreach($user->messages as $message)
+    <div class="col-6">
+        @include('messages.message')
+    </div>
+@endforeach
+</div>
+
+@endsection
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
