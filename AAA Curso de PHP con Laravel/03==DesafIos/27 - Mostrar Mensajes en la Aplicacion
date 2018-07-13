@@ -1,0 +1,182 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Mostrar Mensajes en la Aplicación
+En el video pasado vimos cómo verificar si un usuario debería poder enviar mensajes privados a otro usuario o no, pero si le mando un mensaje al usuario aún obtenemos un error, para esto debos agregar la ruta hacia donde se va a mandar el mensaje.
+
+En nuestro archivo web.php debemos agregar la nueva ruta con el comando post que vamos a utilizar para la recepción de los mensajes y posteriormente el manejo de los mismos con el controller que ya creamos.
+
+El comando post que debemos agregar es el siguiente:
+
+Route:post('/{username}/dms','UserController@sendPrivateMessage')
+En este mismo punto cambiaremos las rutas que necesitan que el usuario esté con su sesión iniciada, esto lo hacemos diciendole a un grupo que utilizará el **middeware ** auth además temos otras arriba que ya utilizaban el middleware y las tenemos que unir al grupo de rutas que necesitan ser sólo para usuarios registrados.
+
+Nuestro archivo final de rutas debe quedar como lo muestro a continuación:
+
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', 'PagesController@home');
+
+Route::get('/messages/{message}', 'MessagesController@show');
+
+Auth::routes();
+Route::get('/auth/facebook', 'SocialAuthController@facebook');
+Route::get('/auth/facebook/callback', 'SocialAuthController@callback');
+Route::post('/auth/facebook/register', 'SocialAuthController@register');
+
+Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('/messages/create', 'MessagesController@create');
+    Route::get('/conversations/{conversation}', 'UsersController@showConversation');
+    Route::post('/{username}/dms', 'UsersController@sendPrivateMessage');
+
+    Route::post('/{username}/follow', 'UsersController@follow');
+    Route::post('/{username}/unfollow', 'UsersController@unfollow');
+});
+
+Route::get('/{username}/follows', 'UsersController@follows');
+Route::get('/{username}/followers', 'UsersController@followers');
+Route::get('/{username}', 'UsersController@show');
+Además haremos modificaciones en nuestro controlador de usuarios “UsersControler.php” y además la biblioteca dónde tenemos la función conversation que maneja la relación entre los usuarios para llevar a cabo una conversación, te muestro los resultados finales del código aquí, donde añadimos el código necesario para crear una conversación:
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Conversation;
+use App\PrivateMessage;
+use App\User;
+use Illuminate\Http\Request;
+
+class UsersController extends Controller
+{
+    public function show($username)
+    {
+        $user = $this->findByUsername($username);
+
+        return view('users.show', [
+            'user' => $user,
+        ]);
+    }
+
+    public function follow($username, Request $request)
+    {
+        $user = $this->findByUsername($username);
+
+        $me = $request->user();
+
+        $me->follows()->attach($user);
+
+        return redirect("/$username")->withSuccess('Usuario seguido!');
+    }
+
+    public function unfollow($username, Request $request)
+    {
+        $user = $this->findByUsername($username);
+
+        $me = $request->user();
+
+        $me->follows()->detach($user);
+
+        return redirect("/$username")->withSuccess('Usuario no seguido!');
+    }
+
+    public function follows($username)
+    {
+        $user = $this->findByUsername($username);
+
+        return view('users.follows', [
+            'user' => $user,
+            'follows' => $user->follows,
+        ]);
+    }
+
+    public function followers($username)
+    {
+        $user = $this->findByUsername($username);
+
+        return view('users.follows', [
+            'user' => $user,
+            'follows' => $user->followers,
+        ]);
+    }
+
+    public function sendPrivateMessage($username, Request $request)
+    {
+        $user = $this->findByUsername($username);
+
+        $me = $request->user();
+        $message = $request->input('message');
+
+        $conversation = Conversation::between($me, $user);
+
+        $conversation = Conversation::create();
+        $conversation->users()->attach($me);
+        $conversation->users()->attach($user);
+
+        $privateMessage = PrivateMessage::create([
+            'conversation_id' => $conversation->id,
+            'user_id' => $me->id,
+            'message' => $message,
+        ]);
+
+        return redirect('/conversations/'.$conversation->id);
+    }
+
+    public function showConversation(Conversation $conversation)
+    {
+        $conversation->load('users', 'privateMessages');
+
+        return view('users.conversation', [
+            'conversation' => $conversation,
+            'user' => auth()->user(),
+        ]);
+    }
+
+    private function findByUsername($username)
+    {
+        return User::where('username', $username)->first();
+    }
+}
+PrivateMessage.php
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class PrivateMessage extends Model
+{
+    protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+
+minuto 10.58

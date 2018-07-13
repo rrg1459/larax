@@ -14,6 +14,7 @@
 @if(Auth::check()) {{-- si esta logeado has esto --}}
     @if(Gate::allows('dms', $user))
         <form action="/{{ $user->username }}/dms" method="post">
+            {{ csrf_field() }}
             <input type="text" name="message" class="form-control">
             <button type="submit" class="btn btn-success">
                 Enviar DM
@@ -21,21 +22,23 @@
         </form>
     @endif
     @if(Auth::user()->isFollowing($user)) {{-- si yo como usuario logeado sigo al usuario actual $user --}}
-        <form action="/{{ $user->username }}/unfollow" method="post">
-            {{ csrf_field() }}
-            @if(session('success'))
-            <span class="text-success">{{ session('success') }}</span>
-            @endif
-            <button class="btn btn-danger">Dejar de seguir</button>
-        </form>
+
+    <form action="/{{ $user->username }}/unfollow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-danger">Dejar de seguir</button>
+    </form>
+
     @else
-        <form action="/{{ $user->username }}/follow" method="post">
-            {{ csrf_field() }}
-            @if(session('success'))
-            <span class="text-success">{{ session('success') }}</span>
-            @endif
-            <button class="btn btn-primary">Seguir</button>
-        </form>
+    <form action="/{{ $user->username }}/follow" method="post">
+        {{ csrf_field() }}
+        @if(session('success'))
+        <span class="text-success">{{ session('success') }}</span>
+        @endif
+        <button class="btn btn-primary">Seguir</button>
+    </form>
     @endif
 @endif
 
