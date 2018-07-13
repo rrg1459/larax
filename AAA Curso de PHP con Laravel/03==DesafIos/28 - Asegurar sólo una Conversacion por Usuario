@@ -1,0 +1,59 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Asegurar sólo una Conversación por Usuario
+En el video pasado creamos la funcionalidad de enviar mensajes y poder ver las conversaciones entre usuarios válidos, en este video vamos a aprender cómo estar seguros de que los mensajes nuevos se sigan anexando a una sola conversación.
+
+Volvamos atrás un paso y pensamos cómo hacer que si enviamos mensajes estos se alexen a una conversación existente, como se lo podrían imaginar lo que haremos es validar si existe ya alguna conversación entre los usuarios.
+
+Esto lo haremos con el método:
+
+$conversation = Conversation::between($me, $user);
+Este método no existe así que debemos crearlo en el modelo Conversation.php:
+
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Conversation extends Model
+{
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function privateMessages()
+    {
+        return $this->hasMany(PrivateMessage::class)->orderBy('created_at', 'desc');
+    }
+
+    public static function between(User $user, User $other)
+    {
+        $query = Conversation::whereHas('users', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->whereHas('users', function ($query) use ($other) {
+            $query->where('user_id', $other->id);
+        });
+
+        $conversation = $query->firstOrCreate([]);
+
+        $conversation->users()->sync([
+            $user->id, $other->id
+        ]);
+
+        return $conversation;
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
