@@ -42,7 +42,7 @@ meta 4
 XX25	3	Login con Facebook
 XX26	14	Autorización para envío de mensajes
 XX27	18	Mostrar Mensajes en la Aplicación
-28	7	Asegurar sólo una Conversación por Usuario
+XX28	7	Asegurar sólo una Conversación por Usuario
 29	12	File Uploads
 30	13	Páginas de Error (404, 500)
 

@@ -1,0 +1,128 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+File Uploads
+En este video aprenderemos cómo subir archivos por medio la funcionalidad “File Upload” de Laravel.
+
+En la home agregaremos un nuevo input y Laravel se encargará de generar un objeto “file” con el archivo que subamos.
+
+@extends('layouts.app')
+
+@section('content')
+<div class="jumbotron text-center">
+    <h1>Laratter</h1>
+    <nav>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div class="row">
+<form action="/messages/create" method="post" enctype="multipart/form-data">
+    <div class="form-group @if($errors->has('message')) has-danger @endif">
+        {{ csrf_field() }}
+        <input type="text" name="message" class="form-control" placeholder="Qué estás pensando?">
+        @if ($errors->has('message'))
+            @foreach ($errors->get('message') as $error)
+            <div class="form-control-feedback">{{ $error }}</div>
+            @endforeach
+        @endif
+        <input type="file" class="form-control-file" name="image">
+    </div>
+</form>
+</div>
+<div class="row">
+    @forelse($messages as $message)
+        <div class="col-6">
+            @include('messages.message')
+        </div>
+    @empty
+        <p>No hay mensajes destacados.</p>
+    @endforelse
+
+    @if(count($messages))
+    <div class="mt-2 mx-auto"> 
+        {{ $messages->links('pagination::bootstrap-4') }}
+    </div>
+    @endif
+</div>
+@endsection
+Y también cambiaremos la parte donde generábamos una imágen aleatoria aleatoria y podremos crear mensajes con nuestras propias imáges, esto lo haremos en el controlador de mensajes.
+
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Message;
+use App\Http\Requests\CreateMessageRequest;
+use Illuminate\Http\Request;
+
+class MessagesController extends Controller
+{
+    public function show(Message $message)
+    {
+        return view('messages.show', [
+            'message' => $message,
+        ]);
+    }
+
+    public function create(CreateMessageRequest $request)
+    {
+        $user = $request->user();
+        $image = $request->file('image');
+
+        $message = Message::create([
+            'user_id' => $user->id,
+            'content' => $request->input('message'),
+            'image' => $image->store('messages', 'public')
+        ]);
+
+        return redirect('/messages/'.$message->id);
+    }
+}
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+PAra crear un enlace
+php artisan storage:link
+
+C:\xampp\htdocs\larax (master -> origin)
+λ ls -ls public
+total 5
+0 drwxr-xr-x 1 rrod11 1049089    0 Jul 13 05:43 css/
+0 -rw-r--r-- 1 rrod11 1049089    0 Jul  6 22:30 favicon.ico
+4 -rw-r--r-- 1 rrod11 1049089 1823 Jul  6 22:30 index.php
+0 drwxr-xr-x 1 rrod11 1049089    0 Jul 13 05:43 js/
+1 -rw-r--r-- 1 rrod11 1049089   24 Jul  6 22:30 robots.txt
+0 lrwxrwxrwx 1 rrod11 1049089   40 Jul 13 08:47 storage -> /c/xampp/htdocs/larax/storage/app/public/
+
+C:\xampp\htdocs\larax (master -> origin)
+λ
+
+Este vinculo (storage) se conoce como enlace simbólico y es muy particular de sistemas unix
+
++++
++++
+
+app\message.blade.php
+
+<img class="img-thumbnail" src="{{ Storage::disk('public')->url($message->image) }}">
+<p class="card-text">
+	<div class="text-muted">Escrito por <a href="/{{ $message->user->username }}">{{ $message->user->name }}</a>
+	</div>
+	{{ $message->content }}
+	<a href="/messages/{{ $message->id }}">Leer más</a>
+</p>
+<div class="card-text text-muted float-right">
+	{{ $message->created_at }}
+</div>
