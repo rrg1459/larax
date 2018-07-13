@@ -1,0 +1,36 @@
+***
+***
+en la actual version 5.5.x no hace falta poner este codigo:
+
+if(!$exception instanceof HttpException && !config(app.debug)){
+            $hola= 'hola';
+            $exception = new HttpException(500, $exception->getMessage(), $exception);
+        }```
+
+solo basta con colocar la variable APP_DEBUG=false para que muestre el mensaje de error personalizado  500
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Páginas de Error (404, 500)
+Laravel tiene una forma muy simple de atrapar errores 404 es decir que cuando algún recurso solicitado a nuestro sitio no exista podemos mostrar un error detallado.
+
+Para esto debemos crear una vista específica que Laravel mostrará en caso de presentarse ese escenario, esta vista debe de estar en:
+
+resources>views>errors
+
+Y en una carperta llamada errors debemos crear el archivo 404.blade.php
+
+Además tenemos que ser capaces de capturar los errores 500, la familia de errores 500 representan errores del lado del servidor.
+Para esto tendremos que configurar el “exception handler” para esto debemos ir a app>Exceptions>Handler.php
+y para esto nos vamos a asegurar de no estar en modo desarrollo y asegurarnos de que la excepción no sea de antemano http.
+
+Guido Contreras Woda
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
