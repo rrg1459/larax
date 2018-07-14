@@ -49,7 +49,7 @@ XX30	13	Páginas de Error (404, 500)
 meta 5 (obj minime)
 
 XX31	6	Página de Búsqueda de Mensajes
-32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
+XX32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
 33	12	Implementa Algolia Proyecto
 34	3	Busca por Autor de Mensaje Utilizando Algolia
 35	21	Unit Testing en Laravel

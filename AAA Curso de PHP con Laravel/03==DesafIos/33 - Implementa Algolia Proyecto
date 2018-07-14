@@ -1,0 +1,31 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Implementa Algolia Proyecto
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+composer require laravel/scout
+
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
+
+(en el minuto 1.44 se deberia agregar el provider de scout en config/app)
+
++++
++++
+Algolia
+
+Es una compañía de nueva creación en Estados Unidos que ofrece un producto de búsqueda en la web a través de un modelo SaaS
+(Se crécuenta en algolia con la cuenta de github rrg1459)
+
+composer require algolia/algoliasearch-client-php
+
+php artisan scout:import "App\Message"
