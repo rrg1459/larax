@@ -1,0 +1,26 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+      XXX
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Laravel Mix
+Es un paquete que nos ofrece laravel a través de npm que nos permite usar de forma muy simple las tools mas avanzadas de javaScript del momento, para usar este paquete vamos a necesitar nodejs con npm.
+
+npm install
+
+npm run dev
+
++++
++++
+npm prune
+Comando elimina paquetes que no figuran en la lista de dependencias del paquete principal. Si se proporciona un nombre de paquete, solo se eliminarán los paquetes que coincidan con uno de los nombres suministrados.

@@ -52,7 +52,7 @@ XX31	6	Página de Búsqueda de Mensajes
 XX32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
 XX33	12	Implementa Algolia Proyecto
 XX34	3	Busca por Autor de Mensaje Utilizando Algolia
-35	21	Unit Testing en Laravel
+XX35	21	Unit Testing en Laravel
 36	10	Utiliza Laravel Mix para Generar el JavaScript y CSS para el Frontend
 37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
 
