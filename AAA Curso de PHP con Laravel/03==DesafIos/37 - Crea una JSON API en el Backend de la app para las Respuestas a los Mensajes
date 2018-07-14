@@ -1,0 +1,24 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+php artisan make:model Response --migration
+
++++
++++
+Comandos artisan
+php artisan make:model Response --migration
+php artisan migrate
+
+php artisan migrate:refresh --seed
