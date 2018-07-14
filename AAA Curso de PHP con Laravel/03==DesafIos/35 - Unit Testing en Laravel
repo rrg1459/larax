@@ -1,0 +1,53 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Unit Testing en Laravel
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+los test se ejecutan desde consola
+
+C:\xampp\htdocs\larax (master -> origin)
+λ vendor\bin\phpunit
+PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+
+..                                                                  2 / 2 (100%)
+
+Time: 4.64 seconds, Memory: 12.00MB
+
+OK (2 tests, 2 assertions)
+
+C:\xampp\htdocs\larax (master -> origin)
+λ
+
+cada punto representa cada test que se ejecutó.
+
++++
++++
+Falso positivo
+Siempre es bueno cambiar un poco el código después que el test pasa para verificar que no estamos relmente testeando nada. Hacer que falle cuando creemos que tiene que fallar y luego volver a corregirlo para que no falle.
+
++++
++++
+DatabaseTransactions
+Manejar las transacciones de la base de datos dejando las transacciones abiertas. Se puede usar la BD como si fuera real para al terminal el test se vuelve todo atrás.
+
++++
++++
+php artisan tinker
+Tinker nos va a permitir interactuar con nuestra aplicación como si estuvieramos dentro de ella.
+
+C:\xampp\htdocs\larax (master -> origin)
+λ php artisan tinker
+Psy Shell v0.9.6 (PHP 7.1.18 — cli) by Justin Hileman
+>>> App\User::count()
+=> 17
+>>>
