@@ -58,7 +58,7 @@ XX37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mens
 
 meta 6
 
-38	16	Obtén las Respuestas en el Frontend de la Aplicación
+XX38	16	Obtén las Respuestas en el Frontend de la Aplicación
 39	12	Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
 40	7	Guarda las Notificaciones en la Base de Datos
 

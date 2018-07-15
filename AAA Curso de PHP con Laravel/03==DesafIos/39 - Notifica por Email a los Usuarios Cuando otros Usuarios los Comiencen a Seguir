@@ -1,0 +1,31 @@
+***
+***
+para los que les haya pasado que quieren enviar una notificación a un correo en especifico de alguien que no está registrado, cómo los reportes y eso, simplemente lo pueden hacer de la siguiente manera:
+
+(new User)->forceFill([
+            'name'  => 'Ysmael Clemente',
+            'email' => 'mail@mail.com',
+        ])->notify(new sendMessage());
+
+Básicamente lo que se hace es forzar un usuario falso para enviar el correo a alguien en especifico que esté o no registrado en el sistema.
+
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Para crear una notificacion
+php artisan make:notification UserFollowed
+
++++
++++
+Se debe ir a https://mailtrap.io/ 
+para crear una cuenta con el usuario rrg1459 de github
