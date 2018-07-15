@@ -1,0 +1,115 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Guarda las Notificaciones en la Base de Datos
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Larverl tiene una migration para notificaciones
+php artisan notifications:table
+(esto NO hizo una migration, creo una migracion entre nuestas migraciones)
+
+Se debe correr la migration para tener esta table
+php artisan migrate
+
+
++++
++++
+C:\xampp\htdocs\larax (master -> origin)
+λ php artisan tinker
+Psy Shell v0.9.6 (PHP 7.1.18 — cli) by Justin Hileman
+>>> $user= App\User::find(8)
+=> App\User {#2906
+     id: 8,
+     name: "Keagan Dare",
+     email: "clind@example.com",
+     created_at: "2018-07-14 20:54:48",
+     updated_at: "2018-07-14 20:54:48",
+     username: "woodrow.champlin",
+     avatar: null,
+   }
+>>> $user->notifications
+=> Illuminate\Notifications\DatabaseNotificationCollection {#2915
+     all: [
+       Illuminate\Notifications\DatabaseNotification {#2911
+         id: "7b1f1dc2-f455-44ab-a086-b01cc5ea33d3",
+         type: "App\Notifications\UserFollowed",
+         notifiable_type: "App\User",
+         notifiable_id: 8,
+         data: "{"follower":{"id":9,"name":"Christop Schowalter Jr.","email":"miguel10@example.org","created_at":"2018-0
+7-14 20:54:48","updated_at":"2018-07-14 20:54:48","username":"oconsidine","avatar":null}}",
+         read_at: null,
+         created_at: "2018-07-15 12:18:04",
+         updated_at: "2018-07-15 12:18:04",
+       },
+     ],
+   }
+>>> $user->unreadNotifications
+=> Illuminate\Notifications\DatabaseNotificationCollection {#2913
+     all: [
+       Illuminate\Notifications\DatabaseNotification {#2898
+         id: "7b1f1dc2-f455-44ab-a086-b01cc5ea33d3",
+         type: "App\Notifications\UserFollowed",
+         notifiable_type: "App\User",
+         notifiable_id: 8,
+         data: "{"follower":{"id":9,"name":"Christop Schowalter Jr.","email":"miguel10@example.org","created_at":"2018-0
+7-14 20:54:48","updated_at":"2018-07-14 20:54:48","username":"oconsidine","avatar":null}}",
+         read_at: null,
+         created_at: "2018-07-15 12:18:04",
+         updated_at: "2018-07-15 12:18:04",
+       },
+     ],
+   }
+>>> $user->notifications->first()
+=> Illuminate\Notifications\DatabaseNotification {#2911
+     id: "7b1f1dc2-f455-44ab-a086-b01cc5ea33d3",
+     type: "App\Notifications\UserFollowed",
+     notifiable_type: "App\User",
+     notifiable_id: 8,
+     data: "{"follower":{"id":9,"name":"Christop Schowalter Jr.","email":"miguel10@example.org","created_at":"2018-07-14
+ 20:54:48","updated_at":"2018-07-14 20:54:48","username":"oconsidine","avatar":null}}",
+     read_at: null,
+     created_at: "2018-07-15 12:18:04",
+     updated_at: "2018-07-15 12:18:04",
+   }
+>>> $user->notifications->first()->markAsRead()
+=> null
+>>> $user= App\User::find(8)
+=> App\User {#2907
+     id: 8,
+     name: "Keagan Dare",
+     email: "clind@example.com",
+     created_at: "2018-07-14 20:54:48",
+     updated_at: "2018-07-14 20:54:48",
+     username: "woodrow.champlin",
+     avatar: null,
+   }
+>>> $user->unreadNotifications
+=> Illuminate\Notifications\DatabaseNotificationCollection {#2912
+     all: [],
+   }
+>>> $user->notifications
+=> Illuminate\Notifications\DatabaseNotificationCollection {#2903
+     all: [
+       Illuminate\Notifications\DatabaseNotification {#2914
+         id: "7b1f1dc2-f455-44ab-a086-b01cc5ea33d3",
+         type: "App\Notifications\UserFollowed",
+         notifiable_type: "App\User",
+         notifiable_id: 8,
+         data: "{"follower":{"id":9,"name":"Christop Schowalter Jr.","email":"miguel10@example.org","created_at":"2018-0
+7-14 20:54:48","updated_at":"2018-07-14 20:54:48","username":"oconsidine","avatar":null}}",
+         read_at: "2018-07-15 12:23:59",
+         created_at: "2018-07-15 12:18:04",
+         updated_at: "2018-07-15 12:23:59",
+       },
+     ],
+   }
+>>> $user->notifications
