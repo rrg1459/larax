@@ -1,0 +1,21 @@
+***
+***
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Obtén las Respuestas en el Frontend de la Aplicación
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Los componentes de vue se pueden crear en \resources\assets\js\components
+
++++
++++
+Para compilar esto:
+npm run watch

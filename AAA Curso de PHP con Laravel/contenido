@@ -46,7 +46,7 @@ XX28	7	Asegurar sólo una Conversación por Usuario
 XX29	12	File Uploads
 XX30	13	Páginas de Error (404, 500)
 
-meta 5 (obj minime)
+meta 5
 
 XX31	6	Página de Búsqueda de Mensajes
 XX32	6	Incluye Laravel Debug Bar y optimiza tus consultas a base de datos
@@ -54,13 +54,16 @@ XX33	12	Implementa Algolia Proyecto
 XX34	3	Busca por Autor de Mensaje Utilizando Algolia
 XX35	21	Unit Testing en Laravel
 XX36	10	Utiliza Laravel Mix para Generar el JavaScript y CSS para el Frontend
-37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
+XX37	10	Crea una JSON API en el Backend de la app para las Respuestas a los Mensajes
 
-meta 6 (obj exigente)
+meta 6
 
 38	16	Obtén las Respuestas en el Frontend de la Aplicación
 39	12	Notifica por Email a los Usuarios Cuando otros Usuarios los Comiencen a Seguir
 40	7	Guarda las Notificaciones en la Base de Datos
+
+hasta aqui
+
 41	13	Muestra las Notificaciones en el Frontend de Laratter
 42	16	¡Ahora muéstralas en tiempo real!
 43	19	Llevando Laratter a Producción en Heroku
