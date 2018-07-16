@@ -13,7 +13,8 @@ class UsersController extends Controller
     public function show($username)
     {
 //  	throw new \Exception('Simulando un error.... .... ......');
-        $user = User::where('username', $username)->first();
+        $user = $this->findByUsername($username);
+//        $user = User::where('username', $username)->first();
 
     	return view('users.show', [
     		'user' => $user,
@@ -92,4 +93,8 @@ class UsersController extends Controller
     	return User::where('username', $username)->firstOrFail();
     }
 
+    public function notifications(Request $request)
+    {
+        return $request->user()->notifications;
+    }
 }

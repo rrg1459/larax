@@ -1,0 +1,27 @@
+***
+***
+por que en el UserController puso
+
+notifications como propiedad
+
+return $request->user()->notifications;
+y no como función
+
+return $request->user()->notifications();
+ya que en la implemetación de la superclase esta definida como notifications() con paréntesis.
+
+Notificacions es una propiedad del objeto user ya que trae las notificaciones que tiene el usuario relacionadas en la tabla de notificaciones, te recomiendo que repases la clase anterior donde el profesor muestra las notificaciones usando la terminal, también muestra como traer solo las notificaciones sin leer y como se puede marcar una notificación como leída.
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Muestra las Notificaciones en el Frontend de Larax
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+npm run watch
