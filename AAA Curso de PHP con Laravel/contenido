@@ -64,8 +64,8 @@ XX40	7	Guarda las Notificaciones en la Base de Datos
 
 hasta aqui
 
-41	13	Muestra las Notificaciones en el Frontend de Laratter
-42	16	¡Ahora muéstralas en tiempo real!
+XX41	13	Muestra las Notificaciones en el Frontend de Laratter
+XX42	16	¡Ahora muéstralas en tiempo real!
 43	19	Llevando Laratter a Producción en Heroku
 44		Conclusiones y Cierre del Curso
 

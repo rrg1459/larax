@@ -1,0 +1,128 @@
+***
+***
+Me presenta el siguiente error, le he dado por todas partes y no consigo resolverlo, si alguien puede colaborarme sería muy agradecida su ayuda:
+
+ Illuminate \ Broadcasting \ BroadcastException
+No message
+
+        $response = $this->pusher->trigger(
+            $this->formatChannels($channels), $event, $payload, $socket, true
+        );
+ 
+        if ((is_array($response) && $response['status'] >= 200 && $response['status'] <= 299)
+            || $response === true) {
+            return;
+        }
+ 
+        **throw new BroadcastException(**
+            is_bool($response) ? 'Failed to connect to Pusher.' : $response['body']
+        );
+    }
+ 
+    /**
+     * Get the Pusher SDK instance.
+     *
+     * @return \Pusher\Pusher
+     */
+    public function getPusher()
+    {
+        return $this->pusher;
+    }
+
+en el archivo broadcasting.php colocar la propiedad encripted en false en la definicion de pusher.
+
+'pusher' => [
+            'driver' => 'pusher',
+            'key' => env('PUSHER_APP_KEY'),
+            'secret' => env('PUSHER_APP_SECRET'),
+            'app_id' => env('PUSHER_APP_ID'),
+            'options' => [
+                'cluster' => env('PUSHER_APP_CLUSTER'),
+                'encrypted' => false,
+            ],
+        ],
+
++++
++++
+me da el siguiente error alguien puede ayudarme
+Illuminate \ Broadcasting \ BroadcastException
+Timestamp expired: Given timestamp (2018-02-08T16:22:57Z) not within 600s of server time (2018-02-08T15:56:37Z)
+
+El problema puede parece ser que hay desface de horas entre tu local y el servidor, el desface es de 26 minutos mas o menos, que es mayor a los 600s (10 mins)
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+¡Ahora muéstralas en tiempo real!
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Para ver las notificaciones en tiempo real, yo como usuario no quiero tener que actualizar una pagina para ver si tengo una nueva notificacion, para eso debemos conectarnos desde el frontend a un backend que nos notifique en e lmomentoi cuando algo pasa, para esto vamos a usar laravel Broadcasting, laravel echo y un servicio que se llama pusher, que nos va a ayudar mucho en la comunicacipn desde el server ahacia los clientes.
+
+Tambien se debe descargar las dependencias de pusher de php
+composer require, esto nos va a permivitr conectar laravel con pusher 
+composer require pusher/pusher-php-server
+
+
+Para esto se deben descargar las dependencias de laravel echo con el comando:
+
+npm install laravel-echo pusher-js --save-dev
+la opcion --save-deb es apra que lo guarde en el package json.
+
+Se debe entrar a https://pusher.com/ y crear una cuenta con github.
+
+Crear una app con el nombre de larax e ir a la app-key
+https://dashboard.pusher.com/apps/561210/keys
+estos son los datos de mi app-key
+
+app_id = "561210"
+key = "68307fb0208b853618f3"
+secret = "0decf00459642c448481"
+cluster = "us2"
+
+Para usar pusher en el broadcasting, se debe ir a \config\broadcasting.php
+
+Tenemos que habilitar laravel-echo y decirle que vamos a utilizar pusher.
+
+\resources\assets\js\boostrap.js
+
++++
++++
+en \app\Notifications\UserFollowed.php agregar el broadcast
+
++++
++++
+Hasta aqui el server ya va a notificar através del canal de broadcast pero todavía no hay nadie escuchando. Se debe implementar del lado de javaScript laravel-echjo para notificar las notificaciones en:
+\resources\assets\js\components\Notifications.vue
+
++++
++++
+Hay que verificar en el layouts que le estamos pasando el usuario logeado, eso se ve en la linea 61 del codigo en \resources\viewa\layouts\app.blade.php ((<notifications :user="{{ Auth::user()->id }}"></notifications>))
+
++++
++++
+Desde el principio se debió habilitar desde el principio es habiliar en nuestra configuración el broadcasting en  \config\app.php el service providers 
+((use Illuminate\Notifications\Messages\MailMessage;))
+
+Si vamos a  \app\Providers\BradcastServiceProvider.php nos da las rutas del broadcast.
+
++++
++++
+en .env
+BROADCAST_DRIVER=pusher
+
++++
++++
+Para que me pudiera correr el pusher tuve que agregar estos cambios:
+
+Para que el browser pueda escuchar el pusher hay que agregar (o descomentar, si fuera el caso) en \resources\assets\js\bootstrap.js esta linea:
+```
+window.Pusher = require('pusher-js');
+```
+Y en (.env) no es poca cosa **NO** poner atención al cluster como lo dice el profesor, laravel trae por defecto mt1, en mi caso cuando creé la aplicación el cluster lo ubicó en us2. OJO con esto.
+
