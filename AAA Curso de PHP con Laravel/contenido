@@ -66,16 +66,16 @@ hasta aqui
 
 XX41	13	Muestra las Notificaciones en el Frontend de Laratter
 XX42	16	¡Ahora muéstralas en tiempo real!
-43	19	Llevando Laratter a Producción en Heroku
-44		Conclusiones y Cierre del Curso
+XX43	19	Llevando Laratter a Producción en Heroku
+XX44		Conclusiones y Cierre del Curso
 
 meta 7
 
 Desafíos
 
-45		Implementar login con Twitter/Github
-46		Usuarios Privados
-47		Hashtags y Mentions
+PP45		Implementar login con Twitter/Github
+PP46		Usuarios Privados
+PP47		Hashtags y Mentions
 
 Contenido Bonus 0:20:00
 

@@ -33,9 +33,9 @@
                         <li class="nav-item">
                             <form action="/messages">
                                 <div class="input-group">
-                                    <input type="text" name="query" class="form-control" placeholder="Buscar..." required>
+                                    <input type="text" name="query" class="form-control" placeholder="{{ trans('app.search') }}..." required>
                                     <span class="input-group-btn">
-                                        <button class="btn btn-outline-success">Buscar</button>
+                                        <button class="btn btn-outline-success">{{ trans('app.search') }}</button>
                                     </span>
                                 </div>
                             </form>

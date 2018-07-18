@@ -1,0 +1,187 @@
+***
+***
+Si quiere ejecutar un db:seed requiere de Faker y este esta como dependencia de desarrollo, debe removerlo de "require-dev " y ponerlo en "require"
+
+"require": {
+	//otras dependencias,
+	fzaninotto/faker": "~1.4",
+}
+De esta forma podemos poner en el compile un:
+
+phpartisandb:seed
+Dejo por aqui mi ~~ Proyecto ~~
+http://testing-laratter.herokuapp.com/
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Llevando Larax a Producción en Heroku
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+Voy a crear la cuenta en heroku con la cuenta de Mariam, llamada
+laraxx
+
+
+
++++
++++
+Para conectar nuestra aplicacion con heroku hay que agregar un git remote de heroku, este es el comando:
+
+heroku git:remote -a laraxx
+
++++
++++
+en heroku se debe crear un archivo Procfile con los siguientes comandos:
+web: vendor/bin/heroku-php-apache2 public/
+
++++
++++
+Nuestra aplicacion usa php y usa nodejs para compilar todos nuestros assets con webpack a tavés de laravelmix,
+hay que decirle a heroku que vamos a utilizar PHP y nodejs.
+
+heroku buildpacks:add heroku/php
+heroku buildpacks:add heroku/nodejs
+
+Para nodejs no queremos ejecutar  un server, solo compilar los assets.
+hay que agregar en el archivo package.json esta linea:
+"heroku-postbuild": "npm run production", quedando el archivo de la siguiente manera:
+
+{
+  "private": true,
+  "scripts": {
+    "dev": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "node node_modules/cross-env/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "heroku-postbuild": "npm run production"
+  },
+  "dependencies": {
+    "axios": "^0.15.3",
+    "bootstrap": "^4.0.0-alpha.6",
+    "jquery": "^3.1.1",
+    "laravel-echo": "^1.2.5",
+    "laravel-mix": "^0.8.1",
+    "lodash": "^4.17.4",
+    "pusher-js": "^4.0.0",
+    "tether": "^1.4.0",
+    "vue": "^2.1.10"
+  }
+}
+
++++
++++
+Queremos ejecutar las migraciones y queremos que este linkeado el storage con la parte publica, para eso tenemos que agregar un script en el composer.json en scripts y se llama compile
+
++++
++++
+Setear variables de ambiente desde la terminal
+
+heroku config:set APP_URL=http://laraxx.herokuapp.com
+
+git add composer.json
+git add package.json
+git add Procfile
+
+heroku addons:create heroku-postgresql:hobby-dev
+
+heroku config
+
+λ heroku config
+=== laraxx Config Vars
+APP_URL:      http://laraxx.herokuapp.com
+DATABASE_URL: postgres://bisukkljjyuzga:867a6598891a91687523cb985ef058c21d7b7db747bc3c64b8b1229a34d20bf6@ec2-107-21-126-193.compute-1.amazonaws.com:5432/dcgadar7dg4h25
+
+postgres:// $user: $pass @ $host : $port / $DB
+
+heroku config:set APP_URL=http://laraxx.herokuapp.com
+heroku config:set DB_CONNECTION=pgsql DB_HOST=ec2-107-21-126-193.compute-1.amazonaws.com DB_PORT=5432 DB_DATABASE=dcgadar7dg4h25
+heroku config:set DB_USERNAME=bisukkljjyuzga DB_PASSWORD=867a6598891a91687523cb985ef058c21d7b7db747bc3c64b8b1229a34d20bf6
+ **** Estas lineas se repiten desde aqui ****
+heroku config:set APP_URL=http://laraxx.herokuapp.com
+heroku config:set DB_CONNECTION=pgsql
+heroku config:set DB_HOST=ec2-107-21-126-193.compute-1.amazonaws.com
+heroku config:set DB_PORT=5432
+heroku config:set DB_DATABASE=dcgadar7dg4h25
+heroku config:set DB_USERNAME=bisukkljjyuzga
+heroku config:set DB_PASSWORD=867a6598891a91687523cb985ef058c21d7b7db747bc3c64b8b1229a34d20bf6
+ **** Estas lineas se repiten hasta aqui ****
+
+
+
+
+heroku config:set BROADCAST_DRIVER=pusher MAIL_DRIVER=smtp MAIL_HOST=smtp.mailtrap.io MAIL_PORT=2525 MAIL_USERNAME=fd992de777ca31 MAIL_PASSWORD=dc31b49f8eac15 MAIL_ENCRYPTION=tls
+heroku config:set PUSHER_APP_ID=561210 PUSHER_APP_KEY=68307fb0208b853618f3 PUSHER_APP_SECRET=0decf00459642c448481 PUSHER_APP_CLUSTER=us2
+heroku config:set MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}" MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+heroku config:set FACEBOOK_ID=603731003360050 FACEBOOK_SECRET=a7db9f319c4d08959bdb7ed51c9b8d74 ALGOLIA_APP_ID=WQ32BK5NYJ ALGOLIA_SECRET=b5bb776043a030213865676047460980
+
+heroku config:set SCOUT_PREFIX=production_
+
+ **** Estas lineas se repiten desde aqui ****
+BROADCAST_DRIVER=pusher
+
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=fd992de777ca31
+MAIL_PASSWORD=dc31b49f8eac15
+MAIL_ENCRYPTION=tls
+
+PUSHER_APP_ID=561210
+PUSHER_APP_KEY=68307fb0208b853618f3
+PUSHER_APP_SECRET=0decf00459642c448481
+PUSHER_APP_CLUSTER=us2
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+FACEBOOK_ID=603731003360050
+FACEBOOK_SECRET=a7db9f319c4d08959bdb7ed51c9b8d74
+
+ALGOLIA_APP_ID=WQ32BK5NYJ
+ALGOLIA_SECRET=b5bb776043a030213865676047460980
+ **** Estas lineas se repiten hasta aqui ****
+
+
+C:\xampp\htdocs\larax (master -> origin)
+λ
+
+git commit -m "subiendo a heroku"
+
++++
++++
+Tenemos que generar al APP_KEY
+C:\xampp\htdocs\larax (master -> origin)
+λ php artisan key:gen --show
+base64:rA+9zqN/BHfamZlJhZPc9LDUgGrTWvIqfs8raMpMCd4=
+
+C:\xampp\htdocs\larax (master -> origin)
+λ heroku config:set APP_KEY=base64:rA+9zqN/BHfamZlJhZPc9LDUgGrTWvIqfs8raMpMCd4=
+
++++
++++
+Se necesita que se genere elr achivo de log
+
+heroku config:set APP_LOG=errorlog
+
+git add -A
+git commit -m "subiendo a heroku 4"
+git push heroku master
+
+
++++
++++
+comentar en \config\app.php
+//      Barryvdh\Debugbar\ServiceProvider::class,
+//        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+
++++
++++
+git rm yarn.lock
+git rm package-lock.json

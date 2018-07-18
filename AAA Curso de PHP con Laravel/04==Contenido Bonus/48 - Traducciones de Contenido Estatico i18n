@@ -1,0 +1,32 @@
+***
+***
+es: https://github.com/Laraveles/lang-spanish
+more: https://github.com/caouecs/Laravel-lang/tree/master/src/ca
+
+***********************************************
+*********** descripcion del profesor **********
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Traducciones de Contenido Estático i18n
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+*********** descripcion del profesor **********
+***********************************************
+
+***
+***
+
+en \cofig\app.php
+    'locale' => 'es',
+    'fallback_locale' => 'es',
+
+los archivos de traduccion se encuentran en:
+\resources\lang\en ----> ingles
+
+para español
+\resources\lang\es ----> español
+
++++
++++
+
+minuto 5:10

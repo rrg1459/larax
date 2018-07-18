@@ -91,7 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -152,7 +152,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
+//      Barryvdh\Debugbar\ServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
 
         /*
@@ -213,7 +213,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+//        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 
